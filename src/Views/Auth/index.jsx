@@ -9,7 +9,7 @@ class index extends Component {
           <div class="form-form-wrap">
             <div class="form-container">
               <div class="form-content">
-                <img src={Logo} width="200" />
+                <img src={Logo} width="250" className="logo-login"/>
                 <form class="text-left">
                   <div class="form">
                     <div id="username-field" class="field-wrapper input">
