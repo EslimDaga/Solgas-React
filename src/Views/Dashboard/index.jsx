@@ -19,7 +19,7 @@ class index extends Component {
             <div className="layout-px-spacing">
               <div className="page-header">
                 <div className="page-title">
-                  <h3>Analytics</h3>
+                  <h3>Dashboard</h3>
                 </div>
               </div>
               <div className="row layout-top-spacing">
