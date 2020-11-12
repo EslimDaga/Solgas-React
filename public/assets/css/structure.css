@@ -318,11 +318,11 @@ code {
     border-radius: 6px; }
 
 .navbar .navbar-item .nav-item.theme-logo {
-  margin-left: 25px;
-  margin-right: 65px; }
+  /* margin-left: 25px; */
+  margin-right: 26px; }
   .navbar .navbar-item .nav-item.theme-logo a img {
-    width: 56px;
-    height: 56px;
+    width: 100px;
+    height: 35px;
     border-radius: 5px; }
 
 .navbar .navbar-item .nav-item.dropdown.notification-dropdown .nav-link, .navbar .navbar-item .nav-item.dropdown.message-dropdown .nav-link {
@@ -1022,8 +1022,8 @@ code {
       margin-right: 3px;
       margin-left: 0; }
       .navbar .navbar-item .nav-item.theme-logo a img {
-        width: 38px;
-        height: 38px; }
+        width: 100px;
+        height: 35px; }
   /*
       =============
           NavBar
