@@ -40,7 +40,7 @@ class index extends Component {
                         </div>
                       </div>
                       <div className="progress">
-                        <div className="progress-bar bg-gradient-primary" role="progressbar" style={{width: "57%"}} aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div className="progress-bar bg-gradient-primary" role="progressbar" style={{width: "15%"}} aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </div>
@@ -86,7 +86,7 @@ class index extends Component {
                         </div>
                       </div>
                       <div className="progress">
-                        <div className="progress-bar bg-gradient-warning" role="progressbar" style={{width: "57%"}} aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div className="progress-bar bg-gradient-warning" role="progressbar" style={{width: "75%"}} aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </div>
@@ -109,7 +109,7 @@ class index extends Component {
                         </div>
                       </div>
                       <div className="progress">
-                        <div className="progress-bar bg-gradient-danger" role="progressbar" style={{width: "57%"}} aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div className="progress-bar bg-gradient-danger" role="progressbar" style={{width: "100%"}} aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                     </div>
                   </div>
