@@ -31,13 +31,6 @@ class index extends Component {
                         <input id="password" name="password" type="password" className="form-control" placeholder="Contraseña"/>
                       </div>
                       <div className="d-sm-flex justify-content-between">
-                        <div className="field-wrapper toggle-pass">
-                          <p className="d-inline-block">Mostrar Contraseña</p>
-                          <label className="switch s-primary">
-                            <input type="checkbox" id="toggle-password" className="d-none"/>
-                            <span className="slider round"></span>
-                          </label>
-                        </div>
                         <div className="field-wrapper">
                           <Link to="/">
                             <button type="submit" className="btn btn-primary" value="">Iniciar Sesión</button>
