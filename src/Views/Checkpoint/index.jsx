@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/role-supports-aria-props */
 import React, { Component } from "react";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import Sidebar from "./Components/Sidebar";
+import TableCheckpoint from "./Components/TableCheckpoint";
 
 class index extends Component {
   render() {
@@ -21,11 +20,7 @@ class index extends Component {
                   <h3>Checkpoint</h3>
                 </div>
               </div>
-              <div className="row layout-top-spacing">
-                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                  Checkpoint
-                </div>
-              </div>
+              <TableCheckpoint />
             </div>
             <Footer />
           </div>
