@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext, ToastContext } from "./../../Context/consumer";
 import authApi from "../../Service/auth";

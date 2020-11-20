@@ -8,9 +8,7 @@ import { AuthProvider, ToastProvider } from "./Context/provider"
 ReactDOM.render(
     <BrowserRouter>
       <AuthProvider>
-        <React.StrictMode>
           <App />
-        </React.StrictMode>
       </AuthProvider>
     </BrowserRouter>,
   document.getElementById('root')
