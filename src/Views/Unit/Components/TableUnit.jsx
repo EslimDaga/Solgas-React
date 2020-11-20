@@ -9,9 +9,17 @@ import { Modal,Button } from "react-bootstrap";
 
 const TableUnit = () => {
 
+  //Get Token
+  const token = cache.getItem("user").token;
+
   const [data,setData] = useState([]);
   const [show, setShow] = useState(false);
   const [smShow, setSmShow] = useState(false);
+  const [modalEditar, setModalEditar]=useState(false);
+
+  const handleCloseAdd = () => setShow(false);
+  const handleShowAdd = () => setShow(true);
+
 
   const [consolaSeleccionada, setConsolaSeleccionada] = useState({
     license_plate : "",
@@ -28,18 +36,18 @@ const TableUnit = () => {
     }));
   };
 
-  const unitsDelete = async(license_plate) => {
-    await Axios.delete(API + sub + `delete-unit/` + license_plate + "/",{
+  const unitsDelete = async() => {
+    await Axios.delete(API + sub + `delete-unit/` + consolaSeleccionada.license_plate + "/",{
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${token}`
       }
     })
     .then(response => {
-      setData(data.filter((item) => item.license_plate !== license_plate));
+      setData(data.filter((item) => item.license_plate !== consolaSeleccionada.license_plate));
+      abrirCerrarModalEliminar()
     })
   }
-
 
   const unitsAdd = async () => {
     await Axios.post(API + sub + "create-unit/",consolaSeleccionada,{
@@ -55,12 +63,6 @@ const TableUnit = () => {
   }
 
 
-  const handleCloseAdd = () => setShow(false);
-  const handleShowAdd = () => setShow(true);
-
-  //Get Token
-  const token = cache.getItem("user").token;
-
   const unitsData = async () => {
     await Axios.get(API + sub + "get-units/", {
       headers : {
@@ -72,6 +74,19 @@ const TableUnit = () => {
       setData(response.data);
     })
   };
+
+  const abrirCerrarModalEditar=()=>{
+    setModalEditar(!modalEditar);
+  }
+
+  const abrirCerrarModalEliminar=()=>{
+    setSmShow(!smShow);
+  }
+
+  const seleccionarConsola=(consola, caso)=>{
+    setConsolaSeleccionada(consola);
+    (caso==='Editar')?abrirCerrarModalEditar():abrirCerrarModalEliminar()
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -95,7 +110,7 @@ const TableUnit = () => {
     container[service_type] = item.service_type;
     container[username] = item.username;
     container[created] = item.created;
-    container[actions] = <button onClick={() => setSmShow(true)} className="btn btn-danger">
+    container[actions] = <button onClick={()=>seleccionarConsola(item, 'Eliminar')} className="btn btn-danger">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x-circle">
         <circle cx="12" cy="12" r="10"></circle>
         <line x1="15" y1="9" x2="9" y2="15"></line>
@@ -165,7 +180,7 @@ const TableUnit = () => {
               <div className="col-xl-6 col-md-12 col-sm-12 col-12">
                 <div className="d-flex flex-row-reverse bd-highlight">
                   <button onClick={handleShowAdd}  className="btn btn-primary">
-                    <span>Agregar </span>
+                    <span>Agregar</span>
                   </button>
                 </div>
               </div>
@@ -255,7 +270,7 @@ const TableUnit = () => {
             Mensaje
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>¿Seguro que desea eliminar esta unidad?</Modal.Body>
+        <Modal.Body>¿Seguro que desea eliminar esta unidad? <b>{consolaSeleccionada && consolaSeleccionada.license_plate}</b></Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={() => setSmShow(false)}>
             Cancelar
