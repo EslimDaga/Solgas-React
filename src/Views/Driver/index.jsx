@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import Sidebar from "./Components/Sidebar";
+import TableDriver from "./Components/TableDriver";
 
 class index extends Component {
   render() {
@@ -21,11 +22,7 @@ class index extends Component {
                   <h3>Conductores</h3>
                 </div>
               </div>
-              <div className="row layout-top-spacing">
-                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                  Conductores
-                </div>
-              </div>
+              <TableDriver />
             </div>
             <Footer />
           </div>
