@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthContext } from "./Context/auth";
 import PublicRoute from "./Components/PublicRoute";
-import PrivateRoute from "./Components/PublicRoute";
+import PrivateRoute from "./Components/ProtectedRoute";
 import Login from "./Views/Auth/index";
 import Dashboard from "./Views/Dashboard/index";
 import Events from "./Views/Events/index";
@@ -36,31 +36,31 @@ const App = () => {
           path="/events"
           component={Events}
         />
-        <Route
+        <PrivateRoute
           exact
           path="/history"
           component={History}
           isAuthed={isAuthed}
         />
-        <Route
+        <PrivateRoute
           exact
           path="/checkpoint"
           component={Checkpoint}
           isAuthed={isAuthed}
         />
-        <Route
+        <PrivateRoute
           exact
           path="/drivers"
           component={Drivers}
           isAuthed={isAuthed}
         />
-        <Route
+        <PrivateRoute
           exact
           path="/units"
           component={Units}
           isAuthed={isAuthed}
         />
-        <Route
+        <PrivateRoute
           exact
           path="/logout"
           component={Logout}
