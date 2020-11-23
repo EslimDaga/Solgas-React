@@ -268,6 +268,9 @@ code {
 
 .header-container .sidebarCollapse {
   color: #0b2266; }
+  .header-container .sidebarCollapse svg {
+    width: 27px;
+    height: 27px; }
 
 .navbar-expand-sm .navbar-item .nav-link {
   line-height: 2.75rem;
@@ -276,7 +279,7 @@ code {
   position: unset; }
 
 .navbar .navbar-item .nav-item.dropdown a svg {
-  stroke-width: 1.3px;
+  stroke-width: 1.0px;
   width: 26px;
   height: 26px;
   color: #acb0c3; }
@@ -315,11 +318,11 @@ code {
     border-radius: 6px; }
 
 .navbar .navbar-item .nav-item.theme-logo {
-  margin-left: 25px;
-  margin-right: 65px; }
+  /* margin-left: 25px; */
+  margin-right: 26px; }
   .navbar .navbar-item .nav-item.theme-logo a img {
-    width: 56px;
-    height: 56px;
+    width: 100px;
+    height: 35px;
     border-radius: 5px; }
 
 .navbar .navbar-item .nav-item.dropdown.notification-dropdown .nav-link, .navbar .navbar-item .nav-item.dropdown.message-dropdown .nav-link {
