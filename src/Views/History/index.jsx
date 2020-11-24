@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/role-supports-aria-props */
 import React, { Component } from "react";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import Sidebar from "./Components/Sidebar";
+import { TableHistory } from "./Components/TableHistory";
 
 class index extends Component {
   render() {
@@ -18,14 +17,10 @@ class index extends Component {
             <div className="layout-px-spacing">
               <div className="page-header">
                 <div className="page-title">
-                  <h3>History</h3>
+                  <h3>Históricos de eventos</h3>
                 </div>
               </div>
-              <div className="row layout-top-spacing">
-                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-                  History
-                </div>
-              </div>
+              <TableHistory />
             </div>
             <Footer />
           </div>
