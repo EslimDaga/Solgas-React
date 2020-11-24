@@ -1,10 +1,14 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext, ToastContext } from "./../../Context/consumer";
+import { AuthContext } from "./../../Context/consumer";
 import authApi from "../../Service/auth";
+import {toast} from "react-toastify";
+
 import Logo from "./assets/images/logo_solgas.png";
 //Import Styles
 import "./assets/css/Login.css";
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 const Index = ({ history }) => {
 
@@ -15,13 +19,13 @@ const Index = ({ history }) => {
   const onSubmitForm = (data) => {
     setLoading(true);
     authApi.login(data).then(r => {
-      alert("Bienvenido")
+      toast.success("¡Bienvenido!",{position: toast.POSITION.TOP_CENTER})
       setTimeout(() => {
         setUser(r);
         history.push("/events")
       },1000);
     }).catch(err => {
-      alert("Contraseña Incorrecta")
+      toast.error("Contraseña incorrecta",{position: toast.POSITION.TOP_CENTER})
     })
   };
 
