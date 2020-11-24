@@ -5,7 +5,7 @@ import { API, sub } from "../../../Constants/global";
 import { MDBDataTable } from 'mdbreact';
 //Import Styles
 import "./../assets/table.css";
-import { Modal,Button } from "react-bootstrap";
+import { Modal,Button,Alert } from "react-bootstrap";
 
 const TableCheckpoint = () => {
 
@@ -15,12 +15,12 @@ const TableCheckpoint = () => {
   const [data,setData] = useState([]);
   const [show, setShow] = useState(false);
   const [smShow, setSmShow] = useState(false);
-  const [modalEditar, setModalEditar]=useState(false);
   const [showMap, setShowMap] = useState(false);
+  const [showA1, setShowA1] = useState(false);
 
   const handleCloseAdd = () => setShow(false);
   const handleShowAdd = () => setShow(true);
-
+  const toggleShowA1 = () => setShowA1(!showA1);
 
   const [consolaSeleccionada, setConsolaSeleccionada] = useState({
     username : "",
@@ -28,14 +28,6 @@ const TableCheckpoint = () => {
     modified: "",
     name: "",
   });
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setConsolaSeleccionada(prevState => ({
-      ...prevState,
-      [name] : value
-    }));
-  };
 
   const checkpointDelete = async() => {
     await Axios.delete(API + sub + `delete-checkpoint/` + consolaSeleccionada.name + "/",{
@@ -46,23 +38,10 @@ const TableCheckpoint = () => {
     })
     .then(response => {
       setData(data.filter((item) => item.name !== consolaSeleccionada.name));
+      setShowA1(true);
       abrirCerrarModalEliminar()
     })
   }
-
-  const checkpointAdd = async () => {
-    await Axios.post(API + sub + "create-checkpoint/",consolaSeleccionada,{
-      headers : {
-        'Content-Type': 'application/json',
-        'Authorization': `JWT ${token}`
-      }
-    })
-    .then(response => {
-      setData(data.concat(response.data))
-      handleCloseAdd();
-    })
-  }
-
 
   const checkpointData = async () => {
     await Axios.get(API + sub + "get-checkpoints/", {
@@ -168,11 +147,22 @@ const TableCheckpoint = () => {
         <div className="statbox widget box box-shadow">
           <div className="widget-header">
             <div className="row">
+              <div className="col-xl-12 col-md-12 col-sm-12 col-12">
+                <Alert show={showA1} onClose={toggleShowA1} className="alert alert-danger mb-1 mt-2">
+                  <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x close" data-dismiss="alert">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                  <strong>Checkpoint eliminado con éxito!</strong>
+                </Alert>
+              </div>
               <div className="col-xl-6 col-md-12 col-sm-12 col-12">
                 <h4>Lista de Conductores</h4>
               </div>
               <div className="col-xl-6 col-md-12 col-sm-12 col-12">
-                <div className="d-flex flex-row-reverse bd-highlight">
+                <div className="d-flex flex-row-reverse bd-highlight pt-3 pr-3">
                   <button onClick={handleShowAdd}  className="btn btn-primary">
                     <span>Agregar</span>
                   </button>
@@ -203,8 +193,8 @@ const TableCheckpoint = () => {
               id="inlineFrameExample"
               title="Inline Frame Example"
               width="100%"
-              height="100%"
-              src={`http://checkpoint.segursat.com/api/create-checkpoint/${token}`}>
+              height="770px"
+              src={`http://checkpoint.segursat.com:8080/api/create-checkpoint/${token}`}>
             </iframe>
           </div>
         </Modal.Body>
@@ -238,7 +228,7 @@ const TableCheckpoint = () => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
-            Custom Modal Styling {consolaSeleccionada && consolaSeleccionada.name}
+            {consolaSeleccionada && consolaSeleccionada.name}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -246,10 +236,15 @@ const TableCheckpoint = () => {
             id="inlineFrameExample"
             title="Inline Frame Example"
             width="100%"
-            height="100%"
-            src={`http://checkpoint.segursat.com/api/get-checkpoint/${consolaSeleccionada && consolaSeleccionada.name}/${token}`}>
+            height="698px"
+            src={`http://checkpoint.segursat.com:8080/api/get-checkpoint/${consolaSeleccionada && consolaSeleccionada.name}/${token}`}>
           </iframe>
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={() => setShowMap(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
       </Modal>
     </div>
   )

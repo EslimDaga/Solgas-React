@@ -149,14 +149,14 @@ export const TableHistory = () => {
                 />
               </Grid>
               <Grid item>
-                <IconButton disabled={!searchable} color="secondary" onClick={handleSearchClick}><SearchIcon /></IconButton>
+                <IconButton style={{background : "#e9e9e9",margin : "5px"}} disabled={!searchable} onClick={handleSearchClick}><SearchIcon /></IconButton>
               </Grid>
             </Grid>
             <Grid item sm={12} md={4}>
               <SearchInput onChange={handleSearchChange} placeholder="Buscar por conductor" />
             </Grid>
           </Grid>
-          <Divider />
+          <Divider className="mt-4 mb-2" />
           <StoriesTable events={filtered} loading={loading} onDetailClick={handleModal} />
         </CardContent>
       </Card>

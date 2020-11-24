@@ -7,7 +7,7 @@ import Empty from "../../../Components/Empty";
 
 const StoriesTable = ({ events, loading, onDetailClick }) => {
   return (
-    <TableContainer>
+    <TableContainer className="mt-3">
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>

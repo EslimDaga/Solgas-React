@@ -36,32 +36,6 @@ const UnitDriver = () => {
     }));
   };
 
-  const driverDelete = async() => {
-    await Axios.delete(API + sub + `delete-driver/` + consolaSeleccionada.dni + "/",{
-      headers : {
-        'Content-Type': 'application/json',
-        'Authorization': `JWT ${token}`
-      }
-    })
-    .then(response => {
-      setData(data.filter((item) => item.dni !== consolaSeleccionada.dni));
-      abrirCerrarModalEliminar()
-    })
-  }
-
-  const driverAdd = async () => {
-    await Axios.post(API + sub + "create-driver/",consolaSeleccionada,{
-      headers : {
-        'Content-Type': 'application/json',
-        'Authorization': `JWT ${token}`
-      }
-    })
-    .then(response => {
-      setData(data.concat(response.data))
-      handleCloseAdd();
-    })
-  }
-
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const unitData = async () => {
@@ -95,8 +69,6 @@ const UnitDriver = () => {
     }
     fetchData();
   },[unitData]);
-
-  console.log(data);
 
   const useDrivers = data.map(item => {
     const container = {};
@@ -185,15 +157,8 @@ const UnitDriver = () => {
         <div className="statbox widget box box-shadow">
           <div className="widget-header">
             <div className="row">
-              <div className="col-xl-6 col-md-12 col-sm-12 col-12">
+              <div className="col-xl-12 col-md-12 col-sm-12 col-12">
                 <h4>Lista de Eventos</h4>
-              </div>
-              <div className="col-xl-6 col-md-12 col-sm-12 col-12">
-                <div className="d-flex flex-row-reverse bd-highlight">
-                  <button onClick={handleShowAdd}  className="btn btn-primary">
-                    <span>Agregar</span>
-                  </button>
-                </div>
               </div>
             </div>
           </div>

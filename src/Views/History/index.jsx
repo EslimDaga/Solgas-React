@@ -16,7 +16,7 @@ class index extends Component {
           <div id="content" className="main-content">
             <div className="layout-px-spacing">
               <div className="page-header">
-                <div className="page-title">
+                <div className="page-title mb-3">
                   <h3>Históricos de eventos</h3>
                 </div>
               </div>

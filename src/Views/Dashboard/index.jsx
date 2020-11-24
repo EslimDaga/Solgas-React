@@ -2,8 +2,68 @@ import React, { Component } from "react";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import Sidebar from "./Components/Sidebar";
+import { Bar } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2"
 //Style
 import "./assets/css/dashboard.css";
+
+const data = {
+  labels: ['Eventos', 'Checkpoint', 'Conductores', 'Unidades'],
+  datasets: [
+    {
+      label: 'Resultados Solgas',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        '#1b55e2',
+        '#3cba92',
+        '#f09819',
+        '#c71d6f'
+      ],
+      borderColor: [
+        '#1b55e2',
+        '#3cba92',
+        '#f09819',
+        '#c71d6f'
+      ],
+      borderWidth: 1,
+    },
+  ],
+}
+
+const dataPie = {
+  labels: ['Eventos', 'Checkpoint', 'Conductores', 'Unidades'],
+  datasets: [
+    {
+      label: 'Resultados Solgas',
+      data: [12, 19, 3, 5],
+      backgroundColor: [
+        '#1b55e2',
+        '#3cba92',
+        '#f09819',
+        '#c71d6f'
+      ],
+      borderColor: [
+        '#1b55e2',
+        '#3cba92',
+        '#f09819',
+        '#c71d6f'
+      ],
+      borderWidth: 1,
+    },
+  ],
+}
+
+const options = {
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+        },
+      },
+    ],
+  },
+}
 
 class index extends Component {
   render() {
@@ -111,6 +171,20 @@ class index extends Component {
                       <div className="progress">
                         <div className="progress-bar bg-gradient-danger" role="progressbar" style={{width: "100%"}} aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+                  <div className="widget widget-card-four">
+                    <div className="widget-content">
+                      <Doughnut data={dataPie} />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+                  <div className="widget widget-card-four">
+                    <div className="widget-content">
+                      <Bar data={data} options={options} />
                     </div>
                   </div>
                 </div>

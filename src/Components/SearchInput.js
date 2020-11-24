@@ -26,11 +26,11 @@ const SearchInput = props => {
 
   return (
     <Paper {...rest} className={clsx(classes.root, className)} style={style}>
-      <SearchIcon  />
+      <SearchIcon style={{marginLeft : "8px", marginRight : "8px"}} />
       <Input
         {...rest}
         placeholder={placeholder}
-        className={classes.input}
+        className="form-control"
         disableUnderline
         onChange={onChange}
       />

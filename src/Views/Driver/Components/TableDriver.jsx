@@ -5,7 +5,8 @@ import { API, sub } from "../../../Constants/global";
 import { MDBDataTable } from 'mdbreact';
 //Import Styles
 import "./../assets/table.css";
-import { Modal,Button } from "react-bootstrap";
+import { Modal,Button,Alert } from "react-bootstrap";
+
 
 const TableDriver = () => {
 
@@ -16,10 +17,13 @@ const TableDriver = () => {
   const [show, setShow] = useState(false);
   const [smShow, setSmShow] = useState(false);
   const [modalEditar, setModalEditar]=useState(false);
+  const [showA, setShowA] = useState(false);
+  const [showA1, setShowA1] = useState(false);
 
   const handleCloseAdd = () => setShow(false);
   const handleShowAdd = () => setShow(true);
-
+  const toggleShowA = () => setShowA(!showA);
+  const toggleShowA1 = () => setShowA1(!showA1);
 
   const [consolaSeleccionada, setConsolaSeleccionada] = useState({
     dni : "",
@@ -45,6 +49,7 @@ const TableDriver = () => {
     })
     .then(response => {
       setData(data.filter((item) => item.dni !== consolaSeleccionada.dni));
+      setShowA1(true);
       abrirCerrarModalEliminar()
     })
   }
@@ -58,6 +63,7 @@ const TableDriver = () => {
     })
     .then(response => {
       setData(data.concat(response.data))
+      setShowA(true);
       handleCloseAdd();
     })
   }
@@ -158,11 +164,31 @@ const TableDriver = () => {
         <div className="statbox widget box box-shadow">
           <div className="widget-header">
             <div className="row">
+              <div className="col-xl-12 col-md-12 col-sm-12 col-12">
+                <Alert show={showA} onClose={toggleShowA} className="alert alert-success mb-1 mt-2">
+                  <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x close" data-dismiss="alert">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                  <strong>Conductor agregado con éxito!</strong>
+                </Alert>
+                <Alert show={showA1} onClose={toggleShowA1} className="alert alert-danger mb-1 mt-2">
+                  <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x close" data-dismiss="alert">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                  <strong>Conductor eliminado con éxito!</strong>
+                </Alert>
+              </div>
               <div className="col-xl-6 col-md-12 col-sm-12 col-12">
                 <h4>Lista de Conductores</h4>
               </div>
               <div className="col-xl-6 col-md-12 col-sm-12 col-12">
-                <div className="d-flex flex-row-reverse bd-highlight">
+                <div className="d-flex flex-row-reverse bd-highlight pt-3 pr-3">
                   <button onClick={handleShowAdd}  className="btn btn-primary">
                     <span>Agregar</span>
                   </button>
@@ -199,6 +225,7 @@ const TableDriver = () => {
               placeholder="Ingrese su dni"
               onChange = {handleChange}
               required
+              autoFocus
             />
           </div>
           <div className="form-group mb-3">
