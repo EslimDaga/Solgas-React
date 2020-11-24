@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { AuthContext } from "./Context/auth";
 import PublicRoute from "./Components/PublicRoute";
 import PrivateRoute from "./Components/ProtectedRoute";
@@ -10,6 +10,7 @@ import History from "./Views/History/index";
 import Checkpoint from "./Views/Checkpoint/index";
 import Drivers from "./Views/Driver/index";
 import Units from "./Views/Unit/index";
+import Account from "./Views/Account/index";
 import Logout from "./Views/Logout";
 
 const App = () => {
@@ -35,6 +36,11 @@ const App = () => {
           exact
           path="/events"
           component={Events}
+        />
+        <PrivateRoute
+          exact
+          path="/profile"
+          component={Account}
         />
         <PrivateRoute
           exact

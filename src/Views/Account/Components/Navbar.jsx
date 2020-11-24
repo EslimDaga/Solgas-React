@@ -39,7 +39,7 @@ const Navbar = () => {
             </div>
           </li>
           <li className="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
-            <a href="/profile" className="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-expanded="false">
+            <a href="/account" className="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-expanded="false">
               <img src="assets/img/avatar.png" alt="admin-profile" className="img-fluid"/>
             </a>
             <div className="dropdown-menu position-absolute animated fadeInUp" aria-labelledby="userProfileDropdown">
@@ -53,7 +53,7 @@ const Navbar = () => {
                 </div>
               </div>
               <div className="dropdown-item">
-                <Link to="/profile">
+                <Link to="/account">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-user">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
