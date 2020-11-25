@@ -5,8 +5,11 @@ import { API, sub } from "../../../Constants/global";
 import { MDBDataTable } from "mdbreact";
 import { yourdate } from "../../../Common/decorator";
 import { Modal,Button } from "react-bootstrap";
+import { Carousel } from "react-responsive-carousel";
 //Import Styles
 import "./../assets/table.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 const UnitDriver = () => {
 
   //Get Token
@@ -21,10 +24,34 @@ const UnitDriver = () => {
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
   const [consolaSeleccionada, setConsolaSeleccionada] = useState({
-    dni : "",
-    lastname: "",
-    firstname: "",
-    license_number: "",
+    id: "",
+    latitude: "",
+    longitude: "",
+    timestamp: "",
+    checkpoint: "",
+    game_score: "",
+    driverid: "",
+    driver_fullname: "",
+    unitid: "",
+    provider: "",
+    logistic_operator: "",
+    route_status: "",
+    type_of_service: "",
+    duration_time: "",
+    images: {
+            "url1": "",
+            "url2": "",
+            "url3": "",
+            "url4": "",
+            "url5": "",
+            "url6": "",
+            "url7": "",
+            "url8": "",
+            "url9": "",
+            "url10": "",
+            "url11": ""
+        },
+    datetime: ""
   });
 
   const handleChange = e => {
@@ -375,7 +402,52 @@ const UnitDriver = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          asdasdasd
+        <Carousel autoPlay>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url1}/>
+            <p className="legend">Selfie del Conductor</p>
+          </div>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url2}/>
+            <p className="legend">Extintor</p>
+          </div>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url3}/>
+            <p className="legend">Delantero Izquierdo</p>
+          </div>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url4}/>
+            <p className="legend">Delantero Derecho</p>
+          </div>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url5}/>
+            <p className="legend">Posterior Izquiera</p>
+          </div>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url6}/>
+            <p className="legend">Posterior Derecha</p>
+          </div>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url7}/>
+            <p className="legend">Toma frontal de la unidad</p>
+          </div>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url8}/>
+            <p className="legend">Toma posterior de la unidad</p>
+          </div>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url9}/>
+            <p className="legend">Luces delanteras</p>
+          </div>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url10}/>
+            <p className="legend">Luces posteriores</p>
+          </div>
+          <div>
+            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url11}/>
+            <p className="legend">Valvula interna</p>
+          </div>
+        </Carousel>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={() => setSmShow(false)}>
