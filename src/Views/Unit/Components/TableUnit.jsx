@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import cache from "../../../Helpers/cache";
 import { API, sub } from "../../../Constants/global";
-import { MDBDataTable } from 'mdbreact';
+import { MDBDataTable } from "mdbreact";
+import { yourdate } from "../../../Common/decorator";
 //Import Styles
 import "./../assets/table.css";
 import { Modal,Button,Alert } from "react-bootstrap";
@@ -12,6 +13,7 @@ const TableUnit = () => {
 
   //Get Token
   const token = cache.getItem("user").token;
+  const is_staff = cache.getItem("user").is_staff;
 
   const [data,setData] = useState([]);
   const [show, setShow] = useState(false);
@@ -116,8 +118,8 @@ const TableUnit = () => {
     container[provider] = item.provider;
     container[service_type] = item.service_type;
     container[username] = item.username;
-    container[created] = item.created;
-    container[actions] = <button onClick={()=>seleccionarConsola(item, 'Eliminar')} className="btn btn-danger">
+    container[created] = yourdate(item.created);
+    container[actions] = <button disabled={!is_staff} onClick={()=>seleccionarConsola(item, 'Eliminar')} className="btn btn-danger">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x-circle">
         <circle cx="12" cy="12" r="10"></circle>
         <line x1="15" y1="9" x2="9" y2="15"></line>
@@ -133,43 +135,64 @@ const TableUnit = () => {
         label: 'Placa',
         field: 'license_plate',
         sort: 'asc',
-        width: 150
+        width: 150,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Operador logístico',
         field: 'logistic_operator',
         sort: 'asc',
-        width: 270
+        width: 270,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Proveedor',
         field: 'provider',
         sort: 'asc',
-        width: 200
+        width: 200,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Tipo de Servicio',
         field: 'service_type',
         sort: 'asc',
-        width: 100
+        width: 100,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Usuario',
         field: 'username',
         sort: 'asc',
-        width: 150
+        width: 150,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Fecha de Creación',
         field: 'created',
         sort: 'asc',
-        width: 100
+        width: 100,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Acciones',
         field: 'actions',
         sort: 'asc',
-        width: 100
+        width: 100,
+        attributes: {
+          'class': 'text-center',
+        }
       }
     ],
     rows: useUnits
@@ -178,48 +201,48 @@ const TableUnit = () => {
   return(
     <div className="row layout-top-spacing">
       <div id="tableStriped" className="col-lg-12 col-12 layout-spacing">
-        <div className="statbox widget box box-shadow">
-          <div className="widget-header">
-            <div className="row">
-              <div className="col-xl-12 col-md-12 col-sm-12 col-12">
-                <Alert show={showA} onClose={toggleShowA} className="alert alert-success mb-1 mt-2">
-                  <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x close" data-dismiss="alert">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
-                  <strong>Unidad agregada con éxito!</strong>
-                </Alert>
-                <Alert show={showA1} onClose={toggleShowA1} className="alert alert-danger mb-1 mt-2">
-                  <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x close" data-dismiss="alert">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
-                  <strong>Unidad eliminada con éxito!</strong>
-                </Alert>
-              </div>
-              <div className="col-xl-6 col-md-12 col-sm-12 col-12">
-                <h4>Lista de Unidades</h4>
-              </div>
-              <div className="col-xl-6 col-md-12 col-sm-12 col-12">
-                <div className="d-flex flex-row-reverse bd-highlight pt-3 pr-3">
-                  <button onClick={handleShowAdd}  className="btn btn-primary">
-                    <span>Agregar</span>
-                  </button>
-                </div>
-              </div>
+        <div className="row">
+          <div className="col-xl-12 col-md-12 col-sm-12 col-12">
+            <Alert show={showA} onClose={toggleShowA} className="alert alert-success mb-1 mt-2">
+              <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x close" data-dismiss="alert">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+              <strong>Unidad agregada con éxito!</strong>
+            </Alert>
+            <Alert show={showA1} onClose={toggleShowA1} className="alert alert-danger mb-1 mt-2">
+              <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x close" data-dismiss="alert">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+              <strong>Unidad eliminada con éxito!</strong>
+            </Alert>
+          </div>
+          <div className="col-xl-6 col-md-12 col-sm-12 col-12">
+            <h4>Lista de Unidades</h4>
+          </div>
+          <div className="col-xl-6 col-md-12 col-sm-12 col-12">
+            <div className="d-flex flex-row-reverse bd-highlight pb-3">
+              <button disabled={!is_staff} onClick={handleShowAdd}  className="btn btn-primary">
+                <span>Agregar Unidades</span>
+              </button>
             </div>
           </div>
+        </div>
+        <div className="statbox widget box box-shadow">
+          <div className="widget-header">
+          </div>
           <div className="widget-content widget-content-area">
-            <div className="table-responsive">
+            <div className="table-responsive-lg">
               <MDBDataTable
                 responsive
                 striped
                 bordered
-                small
+                className="text-center"
                 data={table}
               />
             </div>

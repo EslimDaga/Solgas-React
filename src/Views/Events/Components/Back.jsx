@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import cache from "../../../Helpers/cache";
 import { API, sub } from "../../../Constants/global";
-import { MDBDataTable } from 'mdbreact';
+import { MDBDataTable } from "mdbreact";
+import { yourdate } from "../../../Common/decorator";
 //Import Styles
 import "./../assets/table.css";
 import { Modal,Button } from "react-bootstrap";
@@ -86,7 +87,7 @@ const UnitDriver = () => {
     container[type_of_service] = item.type_of_service;
     container[checkpoint] = item.checkpoint;
     container[driver_fullname] = item.driver_fullname;
-    container[datetime] = item.datetime;
+    container[datetime] = yourdate(item.datetime);
     container[actions] = <button onClick={()=>seleccionarConsola(item, 'Eliminar')} className="btn btn-secondary">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-eye">
         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -102,50 +103,74 @@ const UnitDriver = () => {
         label: 'Proveedor',
         field: 'provider',
         sort: 'asc',
-        width: 150
+        width: 150,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Operador Logístico',
         field: 'logistic_operator',
         sort: 'asc',
-        width: 270
+        width: 270,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Placa',
         field: 'unitid',
         sort: 'asc',
-        width: 200
+        width: 200,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Tipo de Servicio',
         field: 'type_of_service',
         sort: 'asc',
-        width: 100
+        width: 100,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Checkpoint',
         field: 'checkpoint',
         sort: 'asc',
-        width: 100
+        width: 100,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Nombre del Conductor',
         field: 'driver_fullname',
         sort: 'asc',
-        width: 100
+        width: 100,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Fecha de Creación',
         field: 'datetime',
         sort: 'asc',
-        width: 100
+        width: 100,
+        attributes: {
+          'class': 'text-center',
+        }
       }
       ,
       {
         label: 'Ver Detalle',
         field: 'actions',
         sort: 'asc',
-        width: 100
+        width: 100,
+        attributes: {
+          'class': 'text-center',
+        }
       }
     ],
     rows: useDrivers
@@ -154,22 +179,22 @@ const UnitDriver = () => {
   return(
     <div className="row layout-top-spacing">
       <div id="tableStriped" className="col-lg-12 col-12 layout-spacing">
+        <div className="row">
+          <div className="col-xl-12 col-md-12 col-sm-12 col-12">
+            <h4>Lista de Eventos</h4>
+          </div>
+        </div>
         <div className="statbox widget box box-shadow">
           <div className="widget-header">
-            <div className="row">
-              <div className="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>Lista de Eventos</h4>
-              </div>
-            </div>
           </div>
           <div className="widget-content widget-content-area">
-            <div className="table-responsive">
+            <div className="table-responsive-lg">
               <MDBDataTable
                 responsive
                 striped
                 bordered
-                small
                 data={table}
+                className="text-center"
               />
             </div>
           </div>
@@ -179,42 +204,78 @@ const UnitDriver = () => {
         size="lg"
         show={smShow}
         onHide={() => setSmShow(false)}
-        aria-labelledby="example-modal-sizes-title-sm"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">
-            Mensaje
+          <Modal.Title id="contained-modal-title-vcenter">
+            Detalles del Evento
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images} alt="First slide"/>
+              <img class="d-block w-100" src="http://checkpoint.segursat.com:8080//static/pictures/fdd90eda9c94b30d11d98d2cdeb6fb4d.jpg" alt="First slide"/>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="..." alt="Second slide"/>
+              <img class="d-block w-100" src="http://checkpoint.segursat.com:8080//static/pictures/eae97854dc8115ec5929911e82670f1c.jpg" alt="Second slide"/>
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="..." alt="Third slide"/>
+              <img class="d-block w-100" src="http://checkpoint.segursat.com:8080//static/pictures/fdd90eda9c94b30d11d98d2cdeb6fb4d.jpg" alt="Third slide"/>
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">Anterior</span>
           </a>
           <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">Siguiente</span>
           </a>
+          <div class="row">
+            <div class="col-xl-6 col-md-12 col-sm-12 col-12">
+              <ul class="list-group mt-3">
+                <li class="list-group-item active">Operador Logístico:</li>
+                <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.logistic_operator}</strong></li>
+              </ul>
+              <ul class="list-group mt-3">
+                <li class="list-group-item active">Placa:</li>
+                <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.unitid}</strong></li>
+              </ul>
+              <ul class="list-group mt-3">
+                <li class="list-group-item active">Tipo de Servicio:</li>
+                <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.type_of_service}</strong></li>
+              </ul>
+              <ul class="list-group mt-3">
+                <li class="list-group-item active">Conductor:</li>
+                <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.driver_fullname}</strong></li>
+              </ul>
+            </div>
+            <div class="col-xl-6 col-md-12 col-sm-12 col-12">
+            <ul class="list-group mt-3">
+              <li class="list-group-item active">Fecha de Creación:</li>
+              <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.datetime}</strong></li>
+            </ul>
+            <ul class="list-group mt-3">
+              <li class="list-group-item active">Estado de ruta:</li>
+              <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.logistic_operator}</strong></li>
+            </ul>
+            <ul class="list-group mt-3">
+              <li class="list-group-item active">Checkpoint:</li>
+              <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.checkpoint}</strong></li>
+            </ul>
+            <ul class="list-group mt-3">
+              <li class="list-group-item active">Puntaje:</li>
+              <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.logistic_operator}</strong></li>
+            </ul>
+            </div>
+          </div>
         </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={() => setSmShow(false)}>
-            Cancelar
-          </Button>
-          <Button variant="primary">
-            Si
+            Cerrar
           </Button>
         </Modal.Footer>
       </Modal>

@@ -16,7 +16,6 @@ export default class TableUnit extends React.Component {
       }
     });
     this.setState({events : res.data})
-    console.log(this.state.events);
   }
 
   constructor(props) {

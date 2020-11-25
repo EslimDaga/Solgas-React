@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import cache from "../../../Helpers/cache";
 import { API, sub } from "../../../Constants/global";
-import { MDBDataTable } from 'mdbreact';
+import { MDBDataTable } from "mdbreact";
+import { yourdate } from "../../../Common/decorator";
 //Import Styles
 import "./../assets/table.css";
 import { Modal,Button,Alert } from "react-bootstrap";
@@ -11,6 +12,7 @@ const TableCheckpoint = () => {
 
   //Get Token
   const token = cache.getItem("user").token;
+  const is_staff = cache.getItem("user").is_staff;
 
   const [data,setData] = useState([]);
   const [show, setShow] = useState(false);
@@ -84,17 +86,17 @@ const TableCheckpoint = () => {
     const actions = "actions";
     container[name] = item.name;
     container[username] = item.username;
-    container[created] = item.created;
-    container[modified] = item.modified;
-    container[actions] = <>
+    container[created] = yourdate(item.created);
+    container[modified] = yourdate(item.modified);
+    container[actions] = <>&nbsp;
       <button onClick={()=>seleccionarConsola(item, 'Editar')} className="btn btn-primary">
         <svg svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-map">
           <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
           <line x1="8" y1="2" x2="8" y2="18"></line>
           <line x1="16" y1="6" x2="16" y2="22"></line>
         </svg>
-      </button>
-      <button onClick={()=>seleccionarConsola(item, 'Eliminar')} className="btn btn-danger ml-2">
+      </button>&nbsp;
+      <button disabled={!is_staff} onClick={()=>seleccionarConsola(item, 'Eliminar')} className="btn btn-danger">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x-circle">
           <circle cx="12" cy="12" r="10"></circle>
           <line x1="15" y1="9" x2="9" y2="15"></line>
@@ -111,31 +113,46 @@ const TableCheckpoint = () => {
         label: 'Nombre',
         field: 'name',
         sort: 'asc',
-        width: 150
+        width: 150,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Usuario',
         field: 'username',
         sort: 'asc',
-        width: 270
+        width: 270,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Fecha de Creación',
         field: 'created',
         sort: 'asc',
-        width: 200
+        width: 200,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Fecha de Modificación',
         field: 'modified',
         sort: 'asc',
-        width: 100
+        width: 100,
+        attributes: {
+          'class': 'text-center',
+        }
       },
       {
         label: 'Acciones',
         field: 'actions',
         sort: 'asc',
-        width: 100
+        width: 100,
+        attributes: {
+          'class': 'text-center',
+        }
       }
     ],
     rows: useCheckpoint
@@ -144,39 +161,39 @@ const TableCheckpoint = () => {
   return(
     <div className="row layout-top-spacing">
       <div id="tableStriped" className="col-lg-12 col-12 layout-spacing">
-        <div className="statbox widget box box-shadow">
-          <div className="widget-header">
-            <div className="row">
-              <div className="col-xl-12 col-md-12 col-sm-12 col-12">
-                <Alert show={showA1} onClose={toggleShowA1} className="alert alert-danger mb-1 mt-2">
-                  <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x close" data-dismiss="alert">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
-                  <strong>Checkpoint eliminado con éxito!</strong>
-                </Alert>
-              </div>
-              <div className="col-xl-6 col-md-12 col-sm-12 col-12">
-                <h4>Lista de Conductores</h4>
-              </div>
-              <div className="col-xl-6 col-md-12 col-sm-12 col-12">
-                <div className="d-flex flex-row-reverse bd-highlight pt-3 pr-3">
-                  <button onClick={handleShowAdd}  className="btn btn-primary">
-                    <span>Agregar</span>
-                  </button>
-                </div>
-              </div>
+        <div className="row">
+          <div className="col-xl-12 col-md-12 col-sm-12 col-12">
+            <Alert show={showA1} onClose={toggleShowA1} className="alert alert-danger mb-1 mt-2">
+              <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-x close" data-dismiss="alert">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+              <strong>Checkpoint eliminado con éxito!</strong>
+            </Alert>
+          </div>
+          <div className="col-xl-6 col-md-12 col-sm-12 col-12">
+            <h4>Lista de Checkpoints</h4>
+          </div>
+          <div className="col-xl-6 col-md-12 col-sm-12 col-12">
+            <div className="d-flex flex-row-reverse bd-highlight pb-3">
+              <button disabled={!is_staff} onClick={handleShowAdd}  className="btn btn-primary">
+                <span>Agregar Checkpoint</span>
+              </button>
             </div>
           </div>
+        </div>
+        <div className="statbox widget box box-shadow">
+          <div className="widget-header">
+          </div>
           <div className="widget-content widget-content-area">
-            <div className="table-responsive">
+            <div className="table-responsive-lg">
               <MDBDataTable
                 responsive
                 striped
                 bordered
-                small
+                className="text-center"
                 data={table}
               />
             </div>
