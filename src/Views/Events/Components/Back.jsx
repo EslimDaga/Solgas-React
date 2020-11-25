@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Axios from "axios";
 import cache from "../../../Helpers/cache";
 import { API, sub } from "../../../Constants/global";
 import { MDBDataTable } from "mdbreact";
 import { yourdate } from "../../../Common/decorator";
+import { Modal,Button } from "react-bootstrap";
 //Import Styles
 import "./../assets/table.css";
-import { Modal,Button } from "react-bootstrap";
-
 const UnitDriver = () => {
 
   //Get Token
   const token = cache.getItem("user").token;
 
   const [data,setData] = useState([]);
-  const [show, setShow] = useState(false);
   const [smShow, setSmShow] = useState(false);
+  const [smShow1, setSmShow1] = useState(false);
   const [modalEditar, setModalEditar]=useState(false);
 
-  const handleCloseAdd = () => setShow(false);
-  const handleShowAdd = () => setShow(true);
-
+  const [currentImage, setCurrentImage] = useState(0);
+  const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
   const [consolaSeleccionada, setConsolaSeleccionada] = useState({
     dni : "",
@@ -52,7 +50,7 @@ const UnitDriver = () => {
   };
 
   const abrirCerrarModalEditar=()=>{
-    setModalEditar(!modalEditar);
+    setSmShow1(!smShow1);
   }
 
   const abrirCerrarModalEliminar=()=>{
@@ -69,7 +67,7 @@ const UnitDriver = () => {
       await unitData();
     }
     fetchData();
-  },[unitData]);
+  },[]);
 
   const useDrivers = data.map(item => {
     const container = {};
@@ -88,12 +86,20 @@ const UnitDriver = () => {
     container[checkpoint] = item.checkpoint;
     container[driver_fullname] = item.driver_fullname;
     container[datetime] = yourdate(item.datetime);
-    container[actions] = <button onClick={()=>seleccionarConsola(item, 'Eliminar')} className="btn btn-secondary">
+    container[actions] = <>&nbsp;
+    <button onClick={()=>seleccionarConsola(item, 'Editar')} className="btn btn-secondary">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-eye">
         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
         <circle cx="12" cy="12" r="3"></circle>
       </svg>
+    </button>&nbsp;
+    <button onClick={()=>seleccionarConsola(item, 'Eliminar')} className="btn btn-secondary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+        <circle cx="12" cy="13" r="4"></circle>
+      </svg>
     </button>
+    </>
     return container;
   })
 
@@ -164,7 +170,7 @@ const UnitDriver = () => {
       }
       ,
       {
-        label: 'Ver Detalle',
+        label: 'Ver Detalles',
         field: 'actions',
         sort: 'asc',
         width: 100,
@@ -202,6 +208,162 @@ const UnitDriver = () => {
       </div>
       <Modal
         size="lg"
+        show={smShow1}
+        onHide={() => setSmShow1(false)}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Detalles del Evento
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div class="widget-activity-three">
+            <div class="widget-content">
+              <div class="mt-container mx-auto">
+                <div class="timeline-line">
+                  <div class="item-timeline timeline-new">
+                    <div class="t-dot">
+                      <div class="t-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                      </div>
+                    </div>
+                    <div class="t-content">
+                      <div class="t-uppercontent">
+                        <h5>Operador Logístico:</h5>
+                        <span class="">{consolaSeleccionada && consolaSeleccionada.datetime}</span>
+                      </div>
+                      <div class="tags">
+                        <mark class="bg-primary br-6">{consolaSeleccionada && consolaSeleccionada.logistic_operator}</mark>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item-timeline timeline-new">
+                    <div class="t-dot">
+                      <div class="t-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                      </div>
+                    </div>
+                    <div class="t-content">
+                      <div class="t-uppercontent">
+                        <h5>Placa</h5>
+                        <span class="">{consolaSeleccionada && consolaSeleccionada.datetime}</span>
+                      </div>
+                      <div class="tags">
+                        <mark class="bg-success br-6">{consolaSeleccionada && consolaSeleccionada.unitid}</mark>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item-timeline timeline-new">
+                    <div class="t-dot">
+                      <div class="t-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      </div>
+                    </div>
+                    <div class="t-content">
+                      <div class="t-uppercontent">
+                        <h5>Tipo de Servicio</h5>
+                        <span class="">{consolaSeleccionada && consolaSeleccionada.datetime}</span>
+                      </div>
+                      <div class="tags">
+                        <mark class="bg-primary br-6">{consolaSeleccionada && consolaSeleccionada.type_of_service}</mark>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item-timeline timeline-new">
+                    <div class="t-dot">
+                      <div class="t-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                      </div>
+                    </div>
+                    <div class="t-content">
+                      <div class="t-uppercontent">
+                        <h5>Conductor</h5>
+                        <span class="">{consolaSeleccionada && consolaSeleccionada.datetime}</span>
+                      </div>
+                      <div class="tags">
+                        <mark class="bg-success br-6">{consolaSeleccionada && consolaSeleccionada.driver_fullname}</mark>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item-timeline timeline-new">
+                    <div class="t-dot">
+                      <div class="t-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                      </div>
+                    </div>
+                    <div class="t-content">
+                      <div class="t-uppercontent">
+                        <h5>Fecha de Creación</h5>
+                        <span class="">{consolaSeleccionada && consolaSeleccionada.datetime}</span>
+                      </div>
+                      <div class="tags">
+                        <mark class="bg-primary br-6">{consolaSeleccionada && consolaSeleccionada.datetime}</mark>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item-timeline timeline-new">
+                    <div class="t-dot">
+                      <div class="t-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                      </div>
+                    </div>
+                    <div class="t-content">
+                      <div class="t-uppercontent">
+                        <h5>Estado de ruta</h5>
+                        <span class="">{consolaSeleccionada && consolaSeleccionada.datetime}</span>
+                      </div>
+                      <div class="tags">
+                        <mark class="bg-success br-6">{consolaSeleccionada && consolaSeleccionada.route_status}</mark>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item-timeline timeline-new">
+                    <div class="t-dot">
+                      <div class="t-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crosshair"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
+                      </div>
+                    </div>
+                    <div class="t-content">
+                      <div class="t-uppercontent">
+                        <h5>Checkpoint</h5>
+                        <span class="">{consolaSeleccionada && consolaSeleccionada.datetime}</span>
+                      </div>
+                      <div class="tags">
+                        <mark class="bg-primary br-6">{consolaSeleccionada && consolaSeleccionada.checkpoint}</mark>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item-timeline timeline-new">
+                    <div class="t-dot">
+                      <div class="t-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                      </div>
+                    </div>
+                    <div class="t-content">
+                      <div class="t-uppercontent">
+                        <h5>Puntaje</h5>
+                        <span class="">{consolaSeleccionada && consolaSeleccionada.datetime}</span>
+                      </div>
+                      <div class="tags">
+                        <mark class="bg-success br-6">{consolaSeleccionada && consolaSeleccionada.game_score}</mark>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={() => setSmShow(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal
+        size="lg"
         show={smShow}
         onHide={() => setSmShow(false)}
         aria-labelledby="contained-modal-title-vcenter"
@@ -213,44 +375,7 @@ const UnitDriver = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div class="row">
-            <div class="col-xl-6 col-md-12 col-sm-12 col-12">
-              <ul class="list-group mt-3">
-                <li class="list-group-item active">Operador Logístico:</li>
-                <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.logistic_operator}</strong></li>
-              </ul>
-              <ul class="list-group mt-3">
-                <li class="list-group-item active">Placa:</li>
-                <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.unitid}</strong></li>
-              </ul>
-              <ul class="list-group mt-3">
-                <li class="list-group-item active">Tipo de Servicio:</li>
-                <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.type_of_service}</strong></li>
-              </ul>
-              <ul class="list-group mt-3">
-                <li class="list-group-item active">Conductor:</li>
-                <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.driver_fullname}</strong></li>
-              </ul>
-            </div>
-            <div class="col-xl-6 col-md-12 col-sm-12 col-12">
-            <ul class="list-group mt-3">
-              <li class="list-group-item active">Fecha de Creación:</li>
-              <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.datetime}</strong></li>
-            </ul>
-            <ul class="list-group mt-3">
-              <li class="list-group-item active">Estado de ruta:</li>
-              <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.logistic_operator}</strong></li>
-            </ul>
-            <ul class="list-group mt-3">
-              <li class="list-group-item active">Checkpoint:</li>
-              <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.checkpoint}</strong></li>
-            </ul>
-            <ul class="list-group mt-3">
-              <li class="list-group-item active">Puntaje:</li>
-              <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.logistic_operator}</strong></li>
-            </ul>
-            </div>
-          </div>
+          asdasdasd
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={() => setSmShow(false)}>

@@ -69,7 +69,7 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
       await unitData();
     }
     fetchData();
-  },[unitData]);
+  },[]);
 
 
   return (
