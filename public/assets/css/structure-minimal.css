@@ -29,12 +29,12 @@ h1, h2, h3, h4, h5, h6 {
 
 ::-moz-selection {
   /* Code for Firefox */
-  color: #1b55e2;
-  background: transparent; }
+  color: white;
+  background: #1b55e2; }
 
 ::selection {
-  color: #1b55e2;
-  background: transparent; }
+  color: white;
+  background: #1b55e2; }
 
 p {
   margin-top: 0;
@@ -1026,8 +1026,8 @@ code {
       margin-right: 3px;
       margin-left: 0; }
       .navbar .navbar-item .nav-item.theme-logo a img {
-        width: 38px;
-        height: 38px; }
+        width: 100px;
+        height: 35px; }
   /*
       =============
           NavBar
