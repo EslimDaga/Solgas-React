@@ -26,6 +26,7 @@ const Index = ({ history }) => {
       },1000);
     }).catch(err => {
       toast.error("Contraseña incorrecta",{position: toast.POSITION.TOP_CENTER})
+      window.location.reload();
     })
   };
 

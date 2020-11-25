@@ -8,6 +8,12 @@
 			@Import	Mixins
 	===============================
 */
+
+
+.page-item{
+  cursor: pointer;
+}
+
 .table-controls {
     padding: 0;
     margin: 0;
