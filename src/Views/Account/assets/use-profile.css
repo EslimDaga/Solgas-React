@@ -241,27 +241,7 @@
           top: 15px;
           left: 50%;
           transform: translateX(-50%); }
-      .education .widget-content-area .timeline-alter .item-timeline:not(:last-child) .t-dot:after {
-        content: '';
-        position: absolute;
-        border-color: inherit;
-        border-width: 2px;
-        border-style: solid;
-        border-radius: 50%;
-        width: 10px;
-        height: 10px;
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: auto;
-        top: 25px;
-        bottom: -15px;
-        border-right-width: 0;
-        border-top-width: 0;
-        border-bottom-width: 0;
-        border-radius: 0;
-        border-color: #ebedf2; }
+      
       .education .widget-content-area .timeline-alter .item-timeline .t-dot img {
         width: 45px;
         height: 45px;
@@ -336,27 +316,7 @@
           top: 15px;
           left: 50%;
           transform: translateX(-50%); }
-      .work-experience .widget-content-area .timeline-alter .item-timeline:not(:last-child) .t-dot:after {
-        content: '';
-        position: absolute;
-        border-color: inherit;
-        border-width: 2px;
-        border-style: solid;
-        border-radius: 50%;
-        width: 10px;
-        height: 10px;
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: auto;
-        top: 25px;
-        bottom: -15px;
-        border-right-width: 0;
-        border-top-width: 0;
-        border-bottom-width: 0;
-        border-radius: 0;
-        border-color: #ebedf2; }
+      
       .work-experience .widget-content-area .timeline-alter .item-timeline .t-dot img {
         width: 45px;
         height: 45px;
