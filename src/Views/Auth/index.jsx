@@ -91,7 +91,7 @@ const Index = ({ history }) => {
                     </div>
                   </div>
                   <div className="field-wrapper">
-                    <a href="auth_pass_recovery.html" className="forgot-pass-link">¿Olvido su contraseña?</a>
+                    <a href="/" className="forgot-pass-link">¿Olvido su contraseña?</a>
                   </div>
                 </div>
               </form>
