@@ -384,7 +384,7 @@ const UnitDriver = () => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={() => setSmShow(false)}>
+          <Button variant="danger" onClick={() => setSmShow1(false)}>
             Cerrar
           </Button>
         </Modal.Footer>
@@ -404,47 +404,47 @@ const UnitDriver = () => {
         <Modal.Body>
         <Carousel autoPlay>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url1}/>
+            <img alt={API + consolaSeleccionada.images.url1} src={API + consolaSeleccionada.images.url1}/>
             <p className="legend">Selfie del Conductor</p>
           </div>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url2}/>
+            <img alt={API + consolaSeleccionada.images.url2} src={API + consolaSeleccionada.images.url2}/>
             <p className="legend">Extintor</p>
           </div>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url3}/>
+            <img alt={API + consolaSeleccionada.images.url3} src={API + consolaSeleccionada.images.url3}/>
             <p className="legend">Delantero Izquierdo</p>
           </div>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url4}/>
+            <img alt={API + consolaSeleccionada.images.url4} src={API + consolaSeleccionada.images.url4}/>
             <p className="legend">Delantero Derecho</p>
           </div>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url5}/>
+            <img alt={API + consolaSeleccionada.images.url5} src={API + consolaSeleccionada.images.url5}/>
             <p className="legend">Posterior Izquiera</p>
           </div>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url6}/>
+            <img alt={API + consolaSeleccionada.images.url6} src={API + consolaSeleccionada.images.url6}/>
             <p className="legend">Posterior Derecha</p>
           </div>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url7}/>
+            <img alt={API + consolaSeleccionada.images.url7} src={API + consolaSeleccionada.images.url7}/>
             <p className="legend">Toma frontal de la unidad</p>
           </div>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url8}/>
+            <img alt={API + consolaSeleccionada.images.url8} src={API + consolaSeleccionada.images.url8}/>
             <p className="legend">Toma posterior de la unidad</p>
           </div>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url9}/>
+            <img alt={API + consolaSeleccionada.images.url9} src={API + consolaSeleccionada.images.url9}/>
             <p className="legend">Luces delanteras</p>
           </div>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url10}/>
+            <img alt={API + consolaSeleccionada.images.url10} src={API + consolaSeleccionada.images.url10}/>
             <p className="legend">Luces posteriores</p>
           </div>
           <div>
-            <img alt={consolaSeleccionada && consolaSeleccionada.images.url1} src={consolaSeleccionada && consolaSeleccionada.images.url11}/>
+            <img alt={API + consolaSeleccionada.images.url11} src={API + consolaSeleccionada.images.url11}/>
             <p className="legend">Valvula interna</p>
           </div>
         </Carousel>
