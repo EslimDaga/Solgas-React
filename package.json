@@ -1,5 +1,8 @@
 {
-  "name": "solgas-frontend",
+  "name": "solgas",
+  "author": "Eslim",
+  "email": "edaga@segursat.com",
+  "licence": "MIT",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -41,6 +44,7 @@
       "react-app/jest"
     ]
   },
+  "proxy": "http://checkpoint.segursat.com:8080",
   "browserslist": {
     "production": [
       ">0.2%",
