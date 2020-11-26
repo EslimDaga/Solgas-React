@@ -289,23 +289,7 @@
     color: #e2a03f;
     
 }
-.widget-activity-three .timeline-line .item-timeline .t-dot:after {
-    content: '';
-    position: absolute;
-    border-width: 1px;
-    border-style: solid;
-    left: 40%;
-    transform: translateX(-50%);
-    border-color: #bfc9d4;
-    width: 0;
-    height: auto;
-    top: 36px;
-    bottom: -20px;
-    border-right-width: 0;
-    border-top-width: 0;
-    border-bottom-width: 0;
-    border-radius: 0;
-}
+
 .widget-activity-three .timeline-line .item-timeline:last-child .t-dot:after { display: none; }
 
 /*
