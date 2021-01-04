@@ -6,6 +6,7 @@ import { MDBDataTable } from 'mdbreact';
 //Import Styles
 import "./../assets/table.css";
 import { Modal,Button,Alert } from "react-bootstrap";
+import request from "../../../Service/request";
 
 
 const TableDriver = () => {
@@ -42,7 +43,7 @@ const TableDriver = () => {
   };
 
   const driverDelete = async() => {
-    await Axios.delete(API + sub + `delete-driver/` + consolaSeleccionada.dni + "/",{
+    await request.delete(API + sub + `delete-driver/` + consolaSeleccionada.dni + "/",{
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${token}`
@@ -56,7 +57,7 @@ const TableDriver = () => {
   }
 
   const driverAdd = async () => {
-    await Axios.post(API + sub + "create-driver/",consolaSeleccionada,{
+    await request.post(API + sub + "create-driver/",consolaSeleccionada,{
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${token}`
@@ -71,7 +72,7 @@ const TableDriver = () => {
 
 
   const driverData = async () => {
-    await Axios.get(API + sub + "get-drivers/", {
+    await request.get(API + sub + "get-drivers/", {
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${token}`

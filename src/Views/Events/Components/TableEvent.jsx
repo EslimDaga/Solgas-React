@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React from "react";
 import cache from "../../../Helpers/cache";
+import request from "../../../Service/request";
 
 export default class TableUnit extends React.Component {
 
@@ -9,7 +10,7 @@ export default class TableUnit extends React.Component {
   }
 
   async componentDidMount() {
-    const res = await Axios.get('http://checkpoint.segursat.com:8080/control/web/api/get-events/',{
+    const res = await request.get('http://checkpoint.segursat.com:8080/control/web/api/get-events/',{
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${cache.getItem("user").token}`
@@ -122,7 +123,7 @@ class ProductTable extends React.Component {
   }
 
   async componentDidMount() {
-    const res = await Axios.get('http://checkpoint.segursat.com:8080/control/web/api/get-events/',{
+    const res = await request.get('http://checkpoint.segursat.com:8080/control/web/api/get-events/',{
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${cache.getItem("user").token}`

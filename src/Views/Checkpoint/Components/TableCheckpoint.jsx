@@ -7,6 +7,7 @@ import { yourdate } from "../../../Common/decorator";
 //Import Styles
 import "./../assets/table.css";
 import { Modal,Button,Alert } from "react-bootstrap";
+import request from "../../../Service/request";
 
 const TableCheckpoint = () => {
 
@@ -32,7 +33,7 @@ const TableCheckpoint = () => {
   });
 
   const checkpointDelete = async() => {
-    await Axios.delete(API + sub + `delete-checkpoint/` + consolaSeleccionada.name + "/",{
+    await request.delete(API + sub + `delete-checkpoint/` + consolaSeleccionada.name + "/",{
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${token}`
@@ -46,7 +47,7 @@ const TableCheckpoint = () => {
   }
 
   const checkpointData = async () => {
-    await Axios.get(API + sub + "get-checkpoints/", {
+    await request.get(API + sub + "get-checkpoints/", {
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${token}`
@@ -211,7 +212,7 @@ const TableCheckpoint = () => {
               title="Inline Frame Example"
               width="100%"
               height="770px"
-              src={`http://checkpoint.segursat.com:8080/api/create-checkpoint/${token}`}>
+              src={`http://checkpoint.segursat.com/api/create-checkpoint/${token}`}>
             </iframe>
           </div>
         </Modal.Body>
@@ -254,7 +255,7 @@ const TableCheckpoint = () => {
             title="Inline Frame Example"
             width="100%"
             height="698px"
-            src={`http://checkpoint.segursat.com:8080/api/get-checkpoint/${consolaSeleccionada && consolaSeleccionada.name}/${token}`}>
+            src={`http://checkpoint.segursat.com/api/get-checkpoint/${consolaSeleccionada && consolaSeleccionada.name}/${token}`}>
           </iframe>
         </Modal.Body>
         <Modal.Footer>

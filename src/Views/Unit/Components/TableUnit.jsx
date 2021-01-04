@@ -7,6 +7,7 @@ import { yourdate } from "../../../Common/decorator";
 //Import Styles
 import "./../assets/table.css";
 import { Modal,Button,Alert } from "react-bootstrap";
+import request from "../../../Service/request";
 
 
 const TableUnit = () => {
@@ -43,7 +44,7 @@ const TableUnit = () => {
   };
 
   const unitsDelete = async() => {
-    await Axios.delete(API + sub + `delete-unit/` + consolaSeleccionada.license_plate + "/",{
+    await request.delete(API + sub + `delete-unit/` + consolaSeleccionada.license_plate + "/",{
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${token}`
@@ -57,7 +58,7 @@ const TableUnit = () => {
   }
 
   const unitsAdd = async () => {
-    await Axios.post(API + sub + "create-unit/",consolaSeleccionada,{
+    await request.post(API + sub + "create-unit/",consolaSeleccionada,{
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${token}`
@@ -72,7 +73,7 @@ const TableUnit = () => {
 
 
   const unitsData = async () => {
-    await Axios.get(API + sub + "get-units/", {
+    await request.get(API + sub + "get-units/", {
       headers : {
         'Content-Type': 'application/json',
         'Authorization': `JWT ${token}`
@@ -254,59 +255,59 @@ const TableUnit = () => {
           <Modal.Title style={{color : "#0b2266"}}>Agregar Unidades</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div class="form-group mb-3">
+          <div className="form-group mb-3">
             <div className="mb-2">
               <strong>Número de placa</strong>
             </div>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               name="license_plate"
               placeholder="Ingrese su número de placa"
               onChange = {handleChange}
               required
             />
           </div>
-          <div class="form-group mb-3">
+          <div className="form-group mb-3">
             <div className="mb-2">
               <strong>Operador Logístico</strong>
             </div>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               name="logistic_operator"
               placeholder="Ingrese su operador logístico"
               onChange = {handleChange}
               required
             />
           </div>
-          <div class="form-group mb-3">
+          <div className="form-group mb-3">
             <div className="mb-2">
               <strong>Proveedor</strong>
             </div>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               name="provider"
               placeholder="Ingrese su proveedor"
               onChange = {handleChange}
               required
             />
           </div>
-          <div class="form-group mb-3">
+          <div className="form-group mb-3">
             <div className="mb-2">
               <strong>Tipo de servicio</strong>
             </div>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               name="service_type"
               placeholder="Ingrese su tipo de servicio"
               onChange = {handleChange}
               required
             />
           </div>
-          <button onClick={unitsAdd} class="btn btn-primary btn-block mt-3">Enviar</button>
+          <button onClick={unitsAdd} className="btn btn-primary btn-block mt-3">Enviar</button>
         </Modal.Body>
       </Modal>
       <Modal
