@@ -41,6 +41,7 @@ const App = () => {
           exact
           path="/profile"
           component={Account}
+          isAuthed={isAuthed}
         />
         <PrivateRoute
           exact
