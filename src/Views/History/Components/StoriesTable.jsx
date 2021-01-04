@@ -27,6 +27,9 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
     lastname: "",
     firstname: "",
     license_number: "",
+    images : {
+      url1 : ""
+    }
   });
 
   const handleChange = e => {
@@ -134,15 +137,40 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100" src="http://checkpoint.segursat.com:8080//static/pictures/fdd90eda9c94b30d11d98d2cdeb6fb4d.jpg" alt="First slide"/>
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url1} alt={consolaSeleccionada && consolaSeleccionada.images.url1}/>
         </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="http://checkpoint.segursat.com:8080//static/pictures/eae97854dc8115ec5929911e82670f1c.jpg" alt="Second slide"/>
+        <div class="carousel-item active">
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url2} alt={consolaSeleccionada && consolaSeleccionada.images.url2}/>
         </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="http://checkpoint.segursat.com:8080//static/pictures/fdd90eda9c94b30d11d98d2cdeb6fb4d.jpg" alt="Third slide"/>
+        <div class="carousel-item active">
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url3} alt={consolaSeleccionada && consolaSeleccionada.images.url3}/>
+        </div>
+        <div class="carousel-item active">
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url4} alt={consolaSeleccionada && consolaSeleccionada.images.url4}/>
+        </div>
+        <div class="carousel-item active">
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url5} alt={consolaSeleccionada && consolaSeleccionada.images.url5}/>
+        </div>
+        <div class="carousel-item active">
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url6} alt={consolaSeleccionada && consolaSeleccionada.images.url6}/>
+        </div>
+        <div class="carousel-item active">
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url7} alt={consolaSeleccionada && consolaSeleccionada.images.url7}/>
+        </div>
+        <div class="carousel-item active">
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url8} alt={consolaSeleccionada && consolaSeleccionada.images.url8}/>
+        </div>
+        <div class="carousel-item active">
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url9} alt={consolaSeleccionada && consolaSeleccionada.images.url9}/>
+        </div>
+        <div class="carousel-item active">
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url10} alt={consolaSeleccionada && consolaSeleccionada.images.url10}/>
+        </div>
+        <div class="carousel-item active">
+          <img class="d-block w-100" src={consolaSeleccionada && consolaSeleccionada.images.url11} alt={consolaSeleccionada && consolaSeleccionada.images.url1}/>
         </div>
       </div>
+    </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Anterior</span>
@@ -155,7 +183,8 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
         <div class="col-xl-6 col-md-12 col-sm-12 col-12">
           <ul class="list-group mt-3">
             <li class="list-group-item active">Operador Logístico:</li>
-            <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.logistic_operator}</strong></li>
+            <li class="list-group-item"><strong>{consolaSeleccionada && consolaSeleccionada.logistic_operator}</strong>
+            <strong>{consolaSeleccionada && consolaSeleccionada.images.url1}</strong></li>
           </ul>
           <ul class="list-group mt-3">
             <li class="list-group-item active">Placa:</li>
@@ -189,7 +218,6 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
         </ul>
         </div>
       </div>
-    </div>
     </Modal.Body>
     <Modal.Footer>
       <ButtonModal variant="danger" onClick={() => setSmShow(false)}>
