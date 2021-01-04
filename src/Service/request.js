@@ -46,6 +46,7 @@ const request = axios.create({
         errData = error.response.data;
         switch (error.response.status) {
           case 401:
+            console.log("Sesión terminada");
             cache.removeItem("user");
             window.location.reload();
             break;
