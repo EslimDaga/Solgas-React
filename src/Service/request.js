@@ -12,7 +12,6 @@ import { API as BASE_API } from "./../Constants/global";
  */
 const request = axios.create({
     baseURL: BASE_API,
-    timeout: 100000,
   });
 
   /**
@@ -35,24 +34,21 @@ const request = axios.create({
    */
   request.interceptors.response.use(
     (response) => {
+      console.log(response.status);
+      if (response.status === 401) {
+        cache.removeItem("user");
+        window.location.reload();
+      }
       return response;
     },
     (error) => {
-      console.log(error)
+      console.log(error.response.status)
       let errData = {
         message: "No tienes conexion a Internet",
       };
-      if (error.response) {
-        errData = error.response.data;
-        switch (error.response.status) {
-          case 401:
-            console.log("Sesión terminada");
-            cache.removeItem("user");
-            window.location.reload();
-            break;
-          default:
-            break;
-        }
+      if (error.response.status === 401) {
+        cache.removeItem("user");
+        window.location.reload();
       }
       return Promise.reject(errData);
     }

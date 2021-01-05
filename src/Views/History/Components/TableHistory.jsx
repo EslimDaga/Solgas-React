@@ -12,6 +12,7 @@ import { Search as SearchIcon } from "@material-ui/icons";
 import unitApi from "../../../Service/unit";
 import eventApi from "../../../Service/event";
 /* import EventDialog from "v7iews/Event/components/EventDialog"; */
+import PrintIcon from "@material-ui/icons/Print";
 import { API } from "../../../Constants/global";
 
 const useStyles = makeStyles((theme) => ({
@@ -150,6 +151,9 @@ export const TableHistory = () => {
               </Grid>
               <Grid item>
                 <IconButton style={{background : "#e9e9e9",margin : "5px"}} disabled={!searchable} onClick={handleSearchClick}><SearchIcon /></IconButton>
+              </Grid>
+              <Grid item>
+                <IconButton style={{background : "#e9e9e9",margin : "5px"}} disabled={!searchable}><PrintIcon /></IconButton>
               </Grid>
             </Grid>
             <Grid item sm={12} md={4}>
