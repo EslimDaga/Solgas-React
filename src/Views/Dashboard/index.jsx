@@ -82,6 +82,18 @@ class index extends Component {
                 </div>
               </div>
               <div className="row layout-top-spacing">
+                <div className="col-xl-3 col-lg-12 col-md-3 col-sm-3 col-12 layout-spacing">
+                  <input type="date" className="form-control" />
+                </div>
+                <div className="col-xl-3 col-lg-12 col-md-3 col-sm-3 col-12 layout-spacing">
+                  <input type="date" className="form-control" />
+                </div>
+                <div className="col-xl-3 col-lg-12 col-md-3 col-sm-3 col-12 layout-spacing">
+                  <button class="btn btn-primary mb-2 mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+                </div>
+                <div className="col-xl-3 col-lg-12 col-md-3 col-sm-3 col-12 layout-spacing">
+                
+                </div>
                 <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
                   <div className="widget widget-card-four">
                     <div className="widget-content">
