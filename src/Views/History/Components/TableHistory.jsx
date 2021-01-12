@@ -111,6 +111,8 @@ export const TableHistory = () => {
 
   const filtered = events.filter(item => new RegExp(finder, "i").test(item.driver_fullname));
 
+  console.log(filtered)
+
   const Print = (
     <Button
       type="submit"
