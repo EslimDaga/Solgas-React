@@ -8,9 +8,16 @@ class Event {
             }).catch(err => reject(err))
         })
     }
-    search({ date, plate }) {
+    search({ dateInit, dateFinish, plate }) {
         return new Promise((resolve, reject) => {
-            request.get(`${sub}search-events/${date}/${plate}/`).then(r => {
+            request.get(`${sub}search-events/${dateInit}/${dateFinish}/${plate}/`).then(r => {
+                resolve(r.data);
+            }).catch(err => reject(err))
+        })
+    }
+    print({ dateInit, dateFinish, plate }) {
+        return new Promise((resolve, reject) => {
+            request.get(`${sub}print-events/${dateInit}/${dateFinish}/${plate}/`).then(r => {
                 resolve(r.data);
             }).catch(err => reject(err))
         })
