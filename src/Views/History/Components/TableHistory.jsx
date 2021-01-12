@@ -104,7 +104,7 @@ export const TableHistory = () => {
       if (license_plate === "Todo") {
         license_plate = "all"
       }
-      return (`${API}/static/reports/report${date}${license_plate}.txt`).replace(/-/gi, "").toLowerCase()
+      return (`${API}/static/reports/report${date}${license_plate}.csv`).replace(/-/gi, "").toLowerCase()
     }
     return ""
   }
@@ -153,7 +153,8 @@ export const TableHistory = () => {
                 <IconButton style={{background : "#e9e9e9",margin : "5px"}} disabled={!searchable} onClick={handleSearchClick}><SearchIcon /></IconButton>
               </Grid>
               <Grid item>
-                <IconButton style={{background : "#e9e9e9",margin : "5px"}} disabled={!searchable}><PrintIcon /></IconButton>
+                <IconButton style={{background : "#e9e9e9",margin : "5px"}} disabled={!searchable} onClick={() => window.open(printurl())}><PrintIcon /></IconButton>
+                
               </Grid>
             </Grid>
             <Grid item sm={12} md={4}>

@@ -34,7 +34,6 @@ const request = axios.create({
    */
   request.interceptors.response.use(
     (response) => {
-      console.log(response.status);
       if (response.status === 401) {
         cache.removeItem("user");
         window.location.reload();
@@ -42,7 +41,6 @@ const request = axios.create({
       return response;
     },
     (error) => {
-      console.log(error.response.status)
       let errData = {
         message: "No tienes conexion a Internet",
       };
