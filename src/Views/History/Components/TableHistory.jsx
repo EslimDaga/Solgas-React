@@ -29,7 +29,8 @@ export const TableHistory = () => {
 
   const classes = useStyles();
   const [plate, setPlate] = useState({});
-  const [date, setDate] = useState(yourdateactual());
+  const [dateInit, setDateInit] = useState(yourdateactual());
+  const [dateFinish, setDateFinish] = useState(yourdateactual());
   const [loading, setLoading] = useState(false);
   const [finder, setFinder] = useState("");
   const [units, setUnits] = useState([]);
@@ -37,7 +38,8 @@ export const TableHistory = () => {
   const [selected, setSelected] = useState({});
   const [events, setEvents] = useState([]);
   const handlePlateChange = (e, newV) => setPlate(newV);
-  const handleDateChange = ({ target }) => setDate(target.value);
+  const handleDateInitChange = ({ target }) => setDateInit(target.value);
+  const handleDateFinishChange = ({ target }) => setDateFinish(target.value);
 
   useEffect(() => {
     let mounted = true
@@ -79,9 +81,19 @@ export const TableHistory = () => {
     if (selected === "Todo") {
       selected = "ALL"
     }
-    eventApi.search({ date, plate: selected }).then(r => {
+    eventApi.search({ dateInit,dateFinish, plate: selected }).then(r => {
       setEvents(r)
       setLoading(false);
+    }).catch(err => console.log(err));
+  }
+
+  const handlePrintClick = () => {
+    let { license_plate: selected } = plate;
+    if (selected === "Todo") {
+      selected = "ALL"
+    }
+    eventApi.print({ dateInit,dateFinish, plate: selected }).then(r => {
+      window.location.href = (`${API}/static/reports/report${dateInit}to${dateFinish}${selected}.csv`).replace(/-/gi, "").toLowerCase();
     }).catch(err => console.log(err));
   }
 
@@ -104,7 +116,7 @@ export const TableHistory = () => {
       if (license_plate === "Todo") {
         license_plate = "all"
       }
-      return (`${API}/static/reports/report${date}${license_plate}.csv`).replace(/-/gi, "").toLowerCase()
+      return (`${API}/static/reports/report${dateInit}to${dateFinish}${license_plate}.csv`).replace(/-/gi, "").toLowerCase()
     }
     return ""
   }
@@ -119,12 +131,12 @@ export const TableHistory = () => {
       startIcon={<CloudDownloadIcon />}>Imprimir</Button>
   )
 
-  const searchable = (plate !== null && Object.keys(plate).length) && date;
+  const searchable = (plate !== null && Object.keys(plate).length) && dateInit;
   return (
     <Card>
         <CardContent>
           <Grid container spacing={3} className={classes.card} >
-            <Grid item sm={12} md={4} container spacing={1}>
+            <Grid item sm={12} md={6} container spacing={1}>
               <Grid item>
                 <Autocomplete
                   className={classes.formControl}
@@ -138,11 +150,25 @@ export const TableHistory = () => {
               <Grid item>
                 <TextField
                   id="date"
-                  label="Buscar por fecha"
+                  label="Buscar desde"
                   type="date"
                   variant="outlined"
-                  value={date}
-                  onChange={handleDateChange}
+                  value={dateInit}
+                  onChange={handleDateInitChange}
+                  onKeyDown={handleKeyPress}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  id="date"
+                  label="Buscar hasta"
+                  type="date"
+                  variant="outlined"
+                  value={dateFinish}
+                  onChange={handleDateFinishChange}
                   onKeyDown={handleKeyPress}
                   InputLabelProps={{
                     shrink: true,
@@ -153,8 +179,7 @@ export const TableHistory = () => {
                 <IconButton style={{background : "#e9e9e9",margin : "5px"}} disabled={!searchable} onClick={handleSearchClick}><SearchIcon /></IconButton>
               </Grid>
               <Grid item>
-                <IconButton style={{background : "#e9e9e9",margin : "5px"}} disabled={!searchable} onClick={() => window.open(printurl())}><PrintIcon /></IconButton>
-                
+                <IconButton style={{background : "#e9e9e9",margin : "5px"}} disabled={!searchable} onClick={handlePrintClick}><PrintIcon /></IconButton>
               </Grid>
             </Grid>
             <Grid item sm={12} md={4}>
