@@ -93,7 +93,8 @@ export const TableHistory = () => {
       selected = "ALL"
     }
     eventApi.print({ dateInit,dateFinish, plate: selected }).then(r => {
-      window.location.href = (`${API}/static/reports/report${dateInit}to${dateFinish}${selected}.csv`).replace(/-/gi, "").toLowerCase();
+      const url = r.url
+      window.location.href = (`http://checkpoint.segursat.com/${url}`);
     }).catch(err => console.log(err));
   }
 
