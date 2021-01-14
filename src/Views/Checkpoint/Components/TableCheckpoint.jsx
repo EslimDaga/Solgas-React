@@ -203,7 +203,7 @@ const TableCheckpoint = () => {
       </div>
       <Modal show={show} onHide={handleCloseAdd} dialogClassName = "modal-dialog modal-dialog-centered modal-xl">
         <Modal.Header closeButton>
-          <Modal.Title style={{color : "#0b2266"}}>Agregar Conductor</Modal.Title>
+          <Modal.Title style={{color : "#0b2266"}}>Agregar Checkpoint</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
@@ -212,7 +212,7 @@ const TableCheckpoint = () => {
               title="Inline Frame Example"
               width="100%"
               height="770px"
-              src={`http://checkpoint.segursat.com/api/create-checkpoint/${token}`}>
+              src={`http://checkpoint.segursat.com:8080/api/create-checkpoint/${token}`}>
             </iframe>
           </div>
         </Modal.Body>
@@ -255,7 +255,7 @@ const TableCheckpoint = () => {
             title="Inline Frame Example"
             width="100%"
             height="698px"
-            src={`http://checkpoint.segursat.com/api/get-checkpoint/${consolaSeleccionada && consolaSeleccionada.name}/${token}`}>
+            src={`http://checkpoint.segursat.com:8080/api/get-checkpoint/${consolaSeleccionada && consolaSeleccionada.name}/${token}`}>
           </iframe>
         </Modal.Body>
         <Modal.Footer>
