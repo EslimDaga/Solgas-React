@@ -94,7 +94,7 @@ export const TableHistory = () => {
     }
     eventApi.print({ dateInit,dateFinish, plate: selected }).then(r => {
       const url = r.url
-      window.location.href = (`http://checkpoint.segursat.com/${url}`);
+      window.location.href = (`http://checkpoint.segursat.com:8080/${url}`);
     }).catch(err => console.log(err));
   }
 
