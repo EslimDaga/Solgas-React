@@ -105,7 +105,7 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
               <TableCell component="th">{event.type_of_service}</TableCell>
               <TableCell component="th">{event.checkpoint}</TableCell>
               <TableCell component="th">{event.driver_fullname}</TableCell>
-              <TableCell component="th">{yourdate(event.created)}</TableCell>
+              <TableCell component="th">{yourdate(event.datetime)}</TableCell>
               <TableCell>
               <button onClick={()=>seleccionarConsola(event, 'Editar')} className="btn btn-secondary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-eye">
