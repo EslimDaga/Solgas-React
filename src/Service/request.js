@@ -1,6 +1,7 @@
 import axios from "axios";
 import cache from "../Helpers/cache";
 import { API as BASE_API } from "./../Constants/global";
+import swal from "sweetalert";
 
 /**
  * main api config
@@ -41,9 +42,7 @@ const request = axios.create({
       return response;
     },
     (error) => {
-      let errData = {
-        message: "No tienes conexion a Internet",
-      };
+      let errData = swal("Algo salio mal!", "Los datos ingresados ya existen", "error");
       if (error.response.status === 401) {
         cache.removeItem("user");
         window.location.reload();
