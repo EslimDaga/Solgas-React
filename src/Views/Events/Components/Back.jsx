@@ -731,7 +731,7 @@ const UnitDriver = () => {
                   alt={API + consolaSeleccionada.images.url11}
                   src={API + consolaSeleccionada.images.url11}
                 />
-                <p className="legend">Estado de Plataforma</p>
+                <p className="legend">Valvula Interna</p>
               </div>
             </Carousel>
           )}
