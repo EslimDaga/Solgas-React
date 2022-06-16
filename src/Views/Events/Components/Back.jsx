@@ -521,7 +521,7 @@ const UnitDriver = () => {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          classNameName="feather feather-award"
+                          className="feather feather-award"
                         >
                           <circle cx="12" cy="8" r="7"></circle>
                           <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
@@ -539,6 +539,41 @@ const UnitDriver = () => {
                         <mark className="bg-success br-6">
                           {consolaSeleccionada &&
                             consolaSeleccionada.game_score}
+                        </mark>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="item-timeline timeline-new">
+                    <div className="t-dot">
+                      <div className="t-primary">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="feather feather-clock"
+                        >
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="t-content">
+                      <div className="t-uppercontent">
+                        <h5>Tiempo</h5>
+                        <span className="">
+                          {consolaSeleccionada && consolaSeleccionada.datetime}
+                        </span>
+                      </div>
+                      <div className="tags">
+                        <mark className="bg-primary br-6">
+                          {consolaSeleccionada && consolaSeleccionada.game_time}{" "}
+                          Segundos
                         </mark>
                       </div>
                     </div>
