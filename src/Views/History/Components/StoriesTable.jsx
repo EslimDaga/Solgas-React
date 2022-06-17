@@ -561,7 +561,7 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
                       </div>
                       <div className="tags">
                         <mark className="bg-primary br-6">
-                          {consolaSeleccionada && game_time} Segundos
+                          {consolaSeleccionada && game_time}
                         </mark>
                       </div>
                     </div>
