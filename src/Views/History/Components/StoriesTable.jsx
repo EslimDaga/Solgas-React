@@ -76,6 +76,22 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
     fetchData();
   },[]);
 
+  const segundos = Math.round(
+    consolaSeleccionada.duration_time % 0x3c
+  ).toString();
+  const minutos = (
+    Math.floor(consolaSeleccionada.duration_time / 0x3c) % 0x3c
+  ).toString();
+
+  const segundos_2 = Math.round(
+    consolaSeleccionada.game_time % 0x3c
+  ).toString();
+  const minutos_2 = (
+    Math.floor(consolaSeleccionada.game_time / 0x3c) % 0x3c
+  ).toString();
+
+  const durationTime = `Minutos: ${minutos}, Segundos: ${segundos}`;
+  const game_time = `Minutos: ${minutos_2}, Segundos: ${segundos_2}`;
 
   return (
     <>
@@ -488,6 +504,47 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
                           stroke-width="2"
                           stroke-linecap="round"
                           stroke-linejoin="round"
+                          class="feather feather-smartphone"
+                        >
+                          <rect
+                            x="5"
+                            y="2"
+                            width="14"
+                            height="20"
+                            rx="2"
+                            ry="2"
+                          ></rect>
+                          <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="t-content">
+                      <div className="t-uppercontent">
+                        <h5>Tiempo en la Aplicación</h5>
+                        <span className="">
+                          {consolaSeleccionada && consolaSeleccionada.datetime}
+                        </span>
+                      </div>
+                      <div className="tags">
+                        <mark className="bg-primary br-6">
+                          {consolaSeleccionada && durationTime}
+                        </mark>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="item-timeline timeline-new">
+                    <div className="t-dot">
+                      <div className="t-primary">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
                           class="feather feather-clock"
                         >
                           <circle cx="12" cy="12" r="10"></circle>
@@ -497,15 +554,14 @@ const StoriesTable = ({ events, loading, onDetailClick }) => {
                     </div>
                     <div className="t-content">
                       <div className="t-uppercontent">
-                        <h5>Tiempo</h5>
+                        <h5>Tiempo en el Juego</h5>
                         <span className="">
                           {consolaSeleccionada && consolaSeleccionada.datetime}
                         </span>
                       </div>
                       <div className="tags">
                         <mark className="bg-primary br-6">
-                          {consolaSeleccionada && consolaSeleccionada.game_time}{" "}
-                          Segundos
+                          {consolaSeleccionada && game_time} Segundos
                         </mark>
                       </div>
                     </div>
